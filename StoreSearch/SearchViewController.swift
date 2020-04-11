@@ -18,9 +18,28 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResults]()
     var hasSearch = false
     
+    struct TableView {
+        struct cellIdentifiers {
+            static let searchCell = "SearchResultCell"
+            static let notFoundCell = "NothingFoundCell"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.becomeFirstResponder()
+        setNibs()
+       
+    }
+    
+    
+    func setNibs() {
+        let nibCell = UINib(nibName: TableView.cellIdentifiers.searchCell, bundle: nil)
+        tableView.register(nibCell, forCellReuseIdentifier: TableView.cellIdentifiers.searchCell)
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        
+        let notFoundNib = UINib(nibName: TableView.cellIdentifiers.notFoundCell, bundle: nil)
+        tableView.register(notFoundNib, forCellReuseIdentifier: TableView.cellIdentifiers.notFoundCell)
     }
 
 
@@ -61,19 +80,17 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellID = "SearchCell"
-        var cell: UITableViewCell! =  tableView.dequeueReusableCell(withIdentifier: cellID)
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
-        }
+        let cellID = TableView.cellIdentifiers.searchCell
+        let notFoundCellId = TableView.cellIdentifiers.notFoundCell
         if searchResults.count == 0 {
-            cell.textLabel?.text = "(Nothing Found)"
-            cell.detailTextLabel?.text = ""
+            return tableView.dequeueReusableCell(withIdentifier: notFoundCellId, for: indexPath)
         } else {
-            cell.textLabel?.text = searchResults[indexPath.row].name
-            cell.detailTextLabel?.text = searchResults[indexPath.row].artistName
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! SearchResultCell
+            
+            cell.nameLabel?.text = searchResults[indexPath.row].name
+            cell.artistLabel?.text = searchResults[indexPath.row].artistName
+            return cell
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
