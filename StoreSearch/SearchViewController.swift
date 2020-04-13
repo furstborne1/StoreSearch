@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearch = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
     
     struct TableView {
         struct cellIdentifiers {
@@ -60,26 +61,46 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
+            dataTask?.cancel()
             hasSearch = true
             isLoading = true
             tableView.reloadData()
             searchResults = []
-            let queue = DispatchQueue.global()
             let url = itunesURL(for: searchBar.text!)
+            let session = URLSession.shared
             print("URL \(url)")
-            queue.async {
-                if let data = self.performStoreRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                     self.searchResults.sort{ $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
+            dataTask = session.dataTask(with: url) { (data, response, error) in
+                if let error = error as NSError? {
+                    if error.code == -999 {
+                        return
                     }
-                    return
+                    print("error in urlsesson \(error.localizedDescription)")
+                } else if let httpResquest = response as? HTTPURLResponse {
+                    if httpResquest.statusCode == 200 {
+                        if let data = data {
+                            self.searchResults = self.parse(data: data)
+                            self.searchResults.sort{ $0.name.localizedStandardCompare($1.name) == .orderedAscending}
+                            DispatchQueue.main.async {
+                                self.isLoading = false
+                                self.tableView.reloadData()
+                            }
+                            return
+                        }
+                    }
+                } else {
+                    print("faillure")
+                }
+                DispatchQueue.main.async {
+                    self.hasSearch = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetWorkError()
                 }
             }
+            dataTask?.resume()
         }
     }
+    
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         hasSearch = true
@@ -94,17 +115,7 @@ extension SearchViewController: UISearchBarDelegate {
         return url!
     }
     
-    //MARK:- this method put url response to data
-    func performStoreRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("error \(error.localizedDescription)")
-            showNetWorkError()
-            return nil
-            
-        }
-    }
+
     
     func parse(data: Data) -> [SearchResult] {
         do {
