@@ -30,10 +30,34 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="nu1-P2-wHj"/>
                                 </connections>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfF-th-6OP">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="WUA-ow-opT">
+                                        <nil key="title"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wBq-6Z-NND">
+                                            <rect key="frame" x="37.5" y="5.5" width="300" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Software"/>
+                                                <segment title="E-books"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="hRX-cj-brg"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ZfF-th-6OP" firstAttribute="top" secondItem="3lG-Rn-jeI" secondAttribute="bottom" id="3GL-YJ-Rdc"/>
+                            <constraint firstItem="ZfF-th-6OP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5QB-xj-nJk"/>
                             <constraint firstItem="bk7-2C-qhc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7EU-Xt-fHK"/>
+                            <constraint firstItem="ZfF-th-6OP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7nu-4D-Tpa"/>
                             <constraint firstItem="3lG-Rn-jeI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="99y-EV-voU"/>
                             <constraint firstItem="bk7-2C-qhc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ax8-b8-M3L"/>
                             <constraint firstItem="bk7-2C-qhc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dNp-IK-tvK"/>
@@ -45,6 +69,7 @@
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="3lG-Rn-jeI" id="OAM-rv-HYO"/>
+                        <outlet property="segmented" destination="wBq-6Z-NND" id="Ual-tb-5gr"/>
                         <outlet property="tableView" destination="bk7-2C-qhc" id="yij-rp-YyQ"/>
                     </connections>
                 </viewController>

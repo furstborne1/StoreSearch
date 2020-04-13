@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     //MARK:- THIS ALL THE OUTLETS:
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmented: UISegmentedControl!
     
     
     var searchResults = [SearchResult]()
@@ -33,14 +34,31 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         searchBar.becomeFirstResponder()
         setNibs()
+        setupSegmentedControll()
        
+    }
+    
+    
+    @IBAction func segmentedControl(_ sender: UISegmentedControl) {
+        performSearch()
+        print("segmented control index: \(segmented.selectedSegmentIndex)")
+    }
+    
+    func setupSegmentedControll() {
+        let segmentColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9803921569, alpha: 1)
+        let selectedtextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray ]
+        let normalAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        segmented.selectedSegmentTintColor = segmentColor
+        segmented.setTitleTextAttributes(normalAttributes, for: .normal)
+        segmented.setTitleTextAttributes(selectedtextAttributes, for: .selected)
+        segmented.setTitleTextAttributes(selectedtextAttributes, for: .highlighted)
     }
     
     
     func setNibs() {
         let nibCell = UINib(nibName: TableView.cellIdentifiers.searchCell, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: TableView.cellIdentifiers.searchCell)
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         
         let notFoundNib = UINib(nibName: TableView.cellIdentifiers.notFoundCell, bundle: nil)
         tableView.register(notFoundNib, forCellReuseIdentifier: TableView.cellIdentifiers.notFoundCell)
@@ -58,7 +76,7 @@ class SearchViewController: UIViewController {
 
 //MARK:- THIS IS SEARCH BAR DELEGATE:
 extension SearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             dataTask?.cancel()
@@ -66,7 +84,7 @@ extension SearchViewController: UISearchBarDelegate {
             isLoading = true
             tableView.reloadData()
             searchResults = []
-            let url = itunesURL(for: searchBar.text!)
+            let url = itunesURL(for: searchBar.text!, for: segmented.selectedSegmentIndex)
             let session = URLSession.shared
             print("URL \(url)")
             dataTask = session.dataTask(with: url) { (data, response, error) in
@@ -108,9 +126,18 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     //MARK:- this method create a url from a string
-    func itunesURL(for searchText: String) -> URL {
+    func itunesURL(for searchText: String, for category: Int) -> URL {
+        let kind: String
+        switch category {
+        case 1: kind = "musicTrack"
+        case 2: kind = "software"
+        case 3: kind = "ebook"
+        default : kind = ""
+            
+        }
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+        let urlString = "https://itunes.apple.com/search?" +
+        "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
     }
