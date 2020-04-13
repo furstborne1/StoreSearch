@@ -19,6 +19,8 @@
 		494CF644244236A6006A5E3A /* ObjectCount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494CF643244236A6006A5E3A /* ObjectCount.xib */; };
 		494CF6462443CE2F006A5E3A /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494CF6452443CE2F006A5E3A /* LoadingCell.xib */; };
 		494CF64824442238006A5E3A /* UIImageView+DownloadImage.swift..swift in Sources */ = {isa = PBXBuildFile; fileRef = 494CF64724442238006A5E3A /* UIImageView+DownloadImage.swift..swift */; };
+		494CF64A24443550006A5E3A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494CF64924443550006A5E3A /* DetailViewController.swift */; };
+		494CF64C2444CA43006A5E3A /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494CF64B2444CA43006A5E3A /* DimmingPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		494CF643244236A6006A5E3A /* ObjectCount.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectCount.xib; sourceTree = "<group>"; };
 		494CF6452443CE2F006A5E3A /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		494CF64724442238006A5E3A /* UIImageView+DownloadImage.swift..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift..swift"; sourceTree = "<group>"; };
+		494CF64924443550006A5E3A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		494CF64B2444CA43006A5E3A /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				494CF643244236A6006A5E3A /* ObjectCount.xib */,
 				494CF6452443CE2F006A5E3A /* LoadingCell.xib */,
 				494CF64724442238006A5E3A /* UIImageView+DownloadImage.swift..swift */,
+				494CF64924443550006A5E3A /* DetailViewController.swift */,
+				494CF64B2444CA43006A5E3A /* DimmingPresentationController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -162,9 +168,11 @@
 				494CF62C24410094006A5E3A /* SearchViewController.swift in Sources */,
 				494CF62824410094006A5E3A /* AppDelegate.swift in Sources */,
 				494CF63C24414E57006A5E3A /* SearchResults.swift in Sources */,
+				494CF64C2444CA43006A5E3A /* DimmingPresentationController.swift in Sources */,
 				494CF62A24410094006A5E3A /* SceneDelegate.swift in Sources */,
 				494CF64824442238006A5E3A /* UIImageView+DownloadImage.swift..swift in Sources */,
 				494CF64024416702006A5E3A /* SearchResultcell.swift in Sources */,
+				494CF64A24443550006A5E3A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
