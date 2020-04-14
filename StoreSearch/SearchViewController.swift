@@ -161,7 +161,18 @@ extension SearchViewController: UISearchBarDelegate {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let controller = segue.destination as! DetailViewController
+            let indexPath = sender as! IndexPath
+            let searches = searchResults[indexPath.row]
+            controller.searchResult = searches
+        }
+    }
 }
+
+
 
 
 //MARK:- THIS IS FOR TABLEVIEW DELEGATE:
