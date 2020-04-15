@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seT-pe-C2s">
-                                <rect key="frame" x="0.0" y="207" width="375" height="440"/>
+                                <rect key="frame" x="0.0" y="247" width="375" height="400"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dt-Id-96M">
                                         <rect key="frame" x="10" y="10" width="15" height="22"/>
@@ -106,7 +106,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="gxa-zz-uMZ">
                                         <rect key="frame" x="10" y="190" width="355" height="118"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5U-et-jPR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5U-et-jPR">
                                                 <rect key="frame" x="0.0" y="0.0" width="47" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
@@ -159,7 +159,7 @@
                                     <constraint firstItem="YiE-Vc-v2b" firstAttribute="top" secondItem="seT-pe-C2s" secondAttribute="top" constant="20" id="hXp-eF-a45"/>
                                     <constraint firstItem="d2M-vu-Ma8" firstAttribute="leading" secondItem="seT-pe-C2s" secondAttribute="leading" constant="20" id="hcz-xN-ZDS"/>
                                     <constraint firstItem="YiE-Vc-v2b" firstAttribute="centerX" secondItem="seT-pe-C2s" secondAttribute="centerX" id="sj2-Wk-vaq"/>
-                                    <constraint firstAttribute="height" constant="440" id="xrA-wg-Kul"/>
+                                    <constraint firstAttribute="height" constant="400" id="tyb-r0-Px6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -168,6 +168,7 @@
                             <constraint firstItem="seT-pe-C2s" firstAttribute="bottom" secondItem="Vk5-rk-nF6" secondAttribute="bottom" id="5od-0S-gMa"/>
                             <constraint firstItem="seT-pe-C2s" firstAttribute="leading" secondItem="Vk5-rk-nF6" secondAttribute="leading" id="6Zn-a1-kUU"/>
                             <constraint firstItem="seT-pe-C2s" firstAttribute="trailing" secondItem="Vk5-rk-nF6" secondAttribute="trailing" id="WGc-4c-0Td"/>
+                            <constraint firstItem="seT-pe-C2s" firstAttribute="bottom" secondItem="Vk5-rk-nF6" secondAttribute="bottom" id="eLJ-Jt-9ad"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vk5-rk-nF6"/>
                     </view>
